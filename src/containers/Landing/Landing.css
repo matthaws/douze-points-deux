@@ -1,0 +1,22 @@
+.splashImage {
+  position: absolute;
+  right: 100px;
+  bottom: 0;
+  z-index: -2;
+}
+
+.splashImage img {
+  height: 600px;
+  width: auto;
+}
+
+.logo {
+  font-family: "Caveat", cursive;
+  font-size: 100px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.landingPage {
+  overflow: hidden;
+}
