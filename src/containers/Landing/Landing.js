@@ -6,7 +6,9 @@ import "./Landing.css";
 export default () => (
   <div className="landingPage">
     <h1 className="logo">Douze Points!</h1>
-    <Auth />
+    <div className="authContainer">
+      <Auth />
+    </div>
     <div className="splashImage">
       <img src={netta} alt="Netta" />
     </div>

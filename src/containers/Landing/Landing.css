@@ -1,8 +1,31 @@
+.landingPage {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 150px 1fr 1fr 1fr 150px;
+  height: 99vh;
+}
+
+.logo {
+  font-family: "Caveat", cursive;
+  font-size: 100px;
+  grid-column: 1/4;
+  align-self: center;
+  justify-self: center;
+}
+
+.authContainer {
+  grid-column: 1/4;
+  grid-row: 2/4;
+  justify-self: center;
+  align-self: center;
+}
+
 .splashImage {
-  position: absolute;
-  right: 100px;
-  bottom: 0;
   z-index: -2;
+  grid-column: 2/4;
+  grid-row: 3/5;
+  justify-self: right;
+  margin-right: 100px;
 }
 
 .splashImage img {
@@ -10,13 +33,11 @@
   width: auto;
 }
 
-.logo {
-  font-family: "Caveat", cursive;
-  font-size: 100px;
-  text-align: center;
-  margin-top: 50px;
-}
-
-.landingPage {
-  overflow: hidden;
+@media only screen and (max-width: 1200px) {
+  .splashImage {
+    z-index: -2;
+    grid-column: 1/5;
+    grid-row: 4/6;
+    justify-self: center;
+  }
 }
