@@ -41,7 +41,6 @@ class AuthPage extends Component {
   update = field => e => this.setState({ [field]: e.target.value });
 
   render() {
-    console.log(this.props);
     const { version, email, password } = this.state;
     return (
       <div className="container">
