@@ -4,8 +4,9 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { firebaseConnect, isEmpty } from "react-redux-firebase";
+import classNames from "classnames";
 
-import "./Auth.css";
+import styles from "./Auth.module.css";
 
 class AuthPage extends Component {
   state = { version: "signin", email: "", password: "" };
@@ -43,11 +44,14 @@ class AuthPage extends Component {
   render() {
     const { version, email, password } = this.state;
     return (
-      <div className="container">
-        <div className="content-container">
-          <label for="email">E-mail</label>
+      <div className={styles.container}>
+        <div className={styles.contentContainer}>
+          <label className={styles.label} for="email">
+            E-mail
+          </label>
           <br />
           <input
+            className={styles.input}
             id="email"
             type="text"
             placeholder="example@hotmail.com"
@@ -55,9 +59,12 @@ class AuthPage extends Component {
             value={email}
             onChange={this.update("email")}
           />
-          <label for="password">Password</label>
+          <label className={styles.label} for="password">
+            Password
+          </label>
           <br />
           <input
+            className={styles.input}
             id="password"
             type="password"
             placeholder="*****"
@@ -68,12 +75,18 @@ class AuthPage extends Component {
           />
           <br />
 
-          <button class="login">
+          <button className={classNames(styles.login, styles.button)}>
             {version === "signin" ? "LOGIN" : "SIGN UP"}
           </button>
-          <button class="media g">Sign in with Google</button>
+          <button className={classNames(styles.media, styles.button, styles.g)}>
+            Sign in with Google
+          </button>
           <br />
-          <div onClick={this.toggleVersion} class="switchVersion" href="#">
+          <div
+            onClick={this.toggleVersion}
+            className={styles.switchVersion}
+            href="#"
+          >
             {version === "signin"
               ? "Don't have an account?"
               : "Already have an account?"}

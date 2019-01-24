@@ -1,0 +1,31 @@
+/* Colors */
+@value white: #ffffff;
+
+/* Fonts */
+.cursiveFont {
+  font-family: "Caveat", cursive;
+}
+
+.headerFont {
+  font-family: "Montserrat", sans-serif;
+}
+
+.mainBodyFont {
+  font-family: "Rubik", sans-serif;
+}
+
+/* Elements */
+.mainHeader {
+  composes: headerFont;
+  font-size: 32px;
+}
+
+.subHeader {
+  composes: headerFont;
+  font-size: 16px;
+}
+
+.logoText {
+  composes: cursiveFont;
+  font-size: 100px;
+}

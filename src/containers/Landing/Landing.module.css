@@ -6,16 +6,20 @@
 }
 
 .logo {
-  font-family: "Caveat", cursive;
-  font-size: 100px;
+  composes: logoText from "constants/elements.css";
   grid-column: 1/4;
   align-self: center;
   justify-self: center;
 }
 
+.subtitle {
+  composes: subHeader from "constants/elements.css";
+  grid-column: 1/4;
+  text-align: center;
+}
+
 .authContainer {
   grid-column: 1/4;
-  grid-row: 2/4;
   justify-self: center;
   align-self: center;
 }

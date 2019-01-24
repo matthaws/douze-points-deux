@@ -1,9 +1,10 @@
 .container {
   width: 400px;
   height: 400px;
+  composes: mainBodyFont from "constants/elements.css";
 }
 
-.content-container {
+.contentContainer {
   width: 95%;
   height: 100%;
   position: relative;
@@ -15,11 +16,14 @@
   border-radius: 10px;
   padding: 50px;
 }
-label {
+
+.label {
   color: #000000;
   text-transform: uppercase;
+  composes: subHeader from "constants/elements.css";
 }
-input {
+
+.input {
   width: 100%;
   height: 30px;
   margin-bottom: 20px;
@@ -30,10 +34,11 @@ input {
   opacity: 0.5;
   transition: opacity 0.3s;
 }
-input:hover {
+
+.input:hover {
   opacity: 1;
 }
-input:focus {
+.input:focus {
   outline: none;
 }
 
@@ -73,7 +78,7 @@ input:focus {
   background: #ee1f1a;
   color: white;
 }
-button:focus {
+.button:focus {
   outline: none;
 }
 .switchVersion {
