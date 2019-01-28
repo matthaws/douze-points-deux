@@ -11,9 +11,9 @@ export default () => (
     </h1>
     <div className={styles.authContainer}>
       <Auth />
-    </div>
-    <div className={styles.splashImage}>
-      <img src={netta} alt="Netta" />
+      <div className={styles.splashImage}>
+        <img src={netta} alt="Netta" />
+      </div>
     </div>
   </div>
 );

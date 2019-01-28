@@ -1,35 +1,26 @@
 .landingPage {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 150px 1fr 1fr 1fr 150px;
-  height: 99vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
   composes: logoText from "constants/elements.css";
-  grid-column: 1/4;
-  align-self: center;
-  justify-self: center;
+  text-align: center;
+  margin-top: 100px;
 }
 
 .subtitle {
   composes: subHeader from "constants/elements.css";
-  grid-column: 1/4;
   text-align: center;
 }
 
-.authContainer {
-  grid-column: 1/4;
-  justify-self: center;
-  align-self: center;
-}
-
 .splashImage {
-  z-index: -2;
-  grid-column: 2/4;
-  grid-row: 3/5;
-  justify-self: right;
-  margin-right: 100px;
+  z-index: -1;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .splashImage img {
@@ -38,10 +29,17 @@
 }
 
 @media only screen and (max-width: 1200px) {
+  .authContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 800px;
+  }
   .splashImage {
-    z-index: -2;
-    grid-column: 1/5;
-    grid-row: 4/6;
-    justify-self: center;
+    position: relative;
+    align-self: center;
+  }
+
+  .splashImage img {
+    height: 300px;
   }
 }
