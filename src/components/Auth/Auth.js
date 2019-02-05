@@ -46,7 +46,7 @@ class AuthPage extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.contentContainer}>
-          <label className={styles.label} for="email">
+          <label className={styles.label} htmlFor="email">
             E-mail
           </label>
           <br />
@@ -59,7 +59,7 @@ class AuthPage extends Component {
             value={email}
             onChange={this.update("email")}
           />
-          <label className={styles.label} for="password">
+          <label className={styles.label} htmlFor="password">
             Password
           </label>
           <br />
@@ -75,10 +75,16 @@ class AuthPage extends Component {
           />
           <br />
 
-          <button className={classNames(styles.login, styles.button)}>
+          <button
+            onClick={this.signInWithEmailAndPassword}
+            className={classNames(styles.login, styles.button)}
+          >
             {version === "signin" ? "LOGIN" : "SIGN UP"}
           </button>
-          <button className={classNames(styles.media, styles.button, styles.g)}>
+          <button
+            onClick={this.signInWithGoogle}
+            className={classNames(styles.media, styles.button, styles.g)}
+          >
             Sign in with Google
           </button>
           <br />
