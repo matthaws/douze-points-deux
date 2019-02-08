@@ -1,12 +1,13 @@
 import React from "react";
-import { Route, Switch } from "react-router";
+import { Switch } from "react-router";
+import { AuthRoute, ProtectedRoute } from "util/routeUtil";
 
+import Scoresheet from "containers/Scoresheet";
 import Landing from "containers/Landing";
 
-const routes = (
+export default (
   <Switch>
-    <Route exact path="/" component={Landing} />
+    <ProtectedRoute path="/scoresheet/:year" component={Scoresheet} />
+    <AuthRoute exact path="/" component={Landing} />
   </Switch>
 );
-
-export default routes;

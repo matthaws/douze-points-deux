@@ -1,0 +1,17 @@
+.scoresheetContainer {
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.title {
+  composes: mainHeader from "constants/elements.css";
+}
+
+.score {
+  padding: 20px;
+}
+
+hr {
+  width: 80%;
+}

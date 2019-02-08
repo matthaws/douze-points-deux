@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { number, string, shape, func } from "prop-types";
 import HeartFlag from "components/HeartFlag";
 import styles from "./Score.module.css";
@@ -12,7 +12,7 @@ const prettyNames = {
   bonusText: ""
 };
 
-const Score = ({ score, country, artist, title, onScoreChange }) => (
+const Score = ({ score, country, artist, songTitle, onScoreChange }) => (
   <div className={styles.scoreContainer}>
     <div className={styles.header}>
       <div className={styles.countrySection}>
@@ -20,19 +20,28 @@ const Score = ({ score, country, artist, title, onScoreChange }) => (
         <h1 className={styles.countryName}>{country}</h1>
       </div>
       <div className={styles.artistSection}>
-        <h2 className={styles.title}>{`"${title}"`}</h2>
+        <h2 className={styles.title}>{`"${songTitle}"`}</h2>
         <h2>{artist}</h2>
       </div>
     </div>
     <div className={styles.scores}>
       {Object.keys(score).map(category => (
-        <label id={`${country}-${category}`} htmlFor={`${country}-${category}`}>
+        <label
+          key={`${country}-${category}`}
+          htmlFor={`${country}-${category}`}
+        >
           {category === "bonusText" ? (
-            <textarea className={styles.textarea}>{score[category]}</textarea>
+            <textarea
+              id={`${country}-${category}`}
+              className={styles.textarea}
+              value={score[category]}
+              onChange={onScoreChange(category)}
+            />
           ) : (
             <div className={styles.category}>
               {prettyNames[category]}
               <input
+                id={`${country}-${category}`}
                 className={styles.input}
                 type="number"
                 max={12}
@@ -60,7 +69,7 @@ Score.propTypes = {
     bonusPoints: number,
     bonusText: string
   }),
-  title: string
+  songTitle: string
 };
 
 export default Score;

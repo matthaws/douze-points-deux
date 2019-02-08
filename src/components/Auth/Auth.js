@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { shape, func, object } from "prop-types";
-import { compose } from "redux";
-import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import { firebaseConnect, isEmpty } from "react-redux-firebase";
+import { isEmpty } from "react-redux-firebase";
 import classNames from "classnames";
 
 import styles from "./Auth.module.css";
@@ -11,22 +9,24 @@ import styles from "./Auth.module.css";
 class AuthPage extends Component {
   state = { version: "signin", email: "", password: "" };
 
-  componentDidUpdate() {
-    const { dispatch, auth, firebase } = this.props;
-    if (!isEmpty(auth)) {
-      dispatch(push("/scoresheets/2019"));
-      firebase.logout();
-    }
+  componentDidMount() {
+    const { firebase, loginUser } = this.props;
+    firebase.auth().onAuthStateChanged(user => loginUser(user));
   }
 
-  signInWithGoogle = () => {
+  setPersistence = firebase =>
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+
+  signInWithGoogle = async () => {
     const { firebase } = this.props;
+    await this.setPersistence(firebase);
     firebase.login({ provider: "google", type: "popup" });
   };
 
-  signInWithEmailAndPassword = () => {
+  signInWithEmailAndPassword = async () => {
     const { firebase } = this.props;
     const { version, email, password } = this.state;
+    await this.setPersistence(firebase);
     if (version === "signin") {
       firebase.signInWithEmailAndPassword(email, password);
     } else {
@@ -114,7 +114,4 @@ AuthPage.defaultProps = {
   auth: undefined
 };
 
-export default compose(
-  firebaseConnect(),
-  connect(({ firebase: { auth } }) => ({ auth }))
-)(AuthPage);
+export default AuthPage;

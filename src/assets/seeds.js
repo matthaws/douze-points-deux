@@ -1,3 +1,65 @@
+const TwentyEighteen = [
+  {
+    "Final Ranking": 1,
+    "Final Score": 529,
+    "Show Order": 22,
+    Country: "Israel",
+    Artist: "Netta Barzilai",
+    "Song Title": "TOY",
+    Year: 2018
+  },
+  {
+    "Final Ranking": 2,
+    "Final Score": 436,
+    "Show Order": 25,
+    Country: "Cyprus",
+    Artist: "Eleni Foureira",
+    "Song Title": "Fuego",
+    Year: 2018
+  },
+  {
+    "Final Ranking": 3,
+    "Final Score": 342,
+    "Show Order": 5,
+    Country: "Austria",
+    Artist: "Cesár Sampson",
+    "Song Title": "Nobody But You",
+    Year: 2018
+  },
+  {
+    "Final Ranking": 4,
+    "Final Score": 340,
+    "Show Order": 11,
+    Country: "Germany",
+    Artist: "Michael Schulte",
+    "Song Title": "You Let Me Walk Alone",
+    Year: 2018
+  }
+];
+// 4	340	11		Germany	Michael Schulte	You Let Me Walk Alone
+// 5	308	26		Italy	Ermal Meta e Fabrizio Moro	Non Mi Avete Fatto Niente
+// 6	281	14		Czech Republic	Mikolas Josef	Lie To Me
+// 7	274	20		Sweden	Benjamin Ingrosso	Dance You Off
+// 8	245	6		Estonia	Elina Nechayeva	La Forza
+// 9	226	15		Denmark	Rasmussen	Higher Ground
+// 10	209	19		Moldova	DoReDos	My Lucky Day
+// 11	184	12		Albania	Eugent Bushpepa	Mall
+// 12	181	4		Lithuania	Ieva Zasimauskaitė	When We're Old
+// 13	173	13		France	Madame Monsieur	Mercy
+// 14	166	18		Bulgaria	EQUINOX	Bones
+// 15	144	7		Norway	Alexander Rybak	That's How You Write A Song
+// 16	136	24		Ireland	Ryan O'Shaughnessy	Together
+// 17	130	1		Ukraine	MELOVIN	Under The Ladder
+// 18	121	23		Netherlands	Waylon	Outlaw In 'Em
+// 19	113	10		Serbia	Sanja Ilić & Balkanika	Nova Deca
+// 20	99	16		Australia	Jessica Mauboy	We Got Love
+// 21	93	21		Hungary	AWS	Viszlát Nyár
+// 22	64	3		Slovenia	Lea Sirk	Hvala, ne!
+// 23	61	2		Spain	Amaia y Alfred	Tu Canción
+// 24	48	9		United Kingdom	SuRie	Storm
+// 25	46	17		Finland	Saara Aalto	Monsters
+// 26	39	8		Portugal	Cláudia Pascoal	O Jardim
+
 const db = [
   {
     "Final Ranking": 1,
