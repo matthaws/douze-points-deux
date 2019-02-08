@@ -5,26 +5,32 @@ import Score from "components/Score";
 import styles from "./Scoresheet.module.css";
 
 const defaultScore = {
-  song: 0,
-  dance: 0,
-  cheese: 0,
-  bonusPoints: 0,
+  song: "",
+  dance: "",
+  cheese: "",
+  bonusPoints: "",
   bonusText: ""
 };
 
 class Scoresheet extends Component {
-  state = {};
-
-  handleScoreChange = country => category => e => {};
+  handleScoreChange = country => category => e => {
+    const { firebase, scores, year, currentUser } = this.props;
+    const priorScore = (scores && scores[country]) || defaultScore;
+    const newScore = { ...priorScore, [category]: e.target.value };
+    firebase
+      .database()
+      .ref(`scores/${currentUser.uid}/${year}/${country}`)
+      .set(newScore);
+  };
 
   render() {
-    const { entries, year, isLoading, displayName } = this.props;
+    const { entries, year, isLoading, currentUser, scores } = this.props;
     return isLoading ? (
       <h1>Loading</h1>
     ) : (
       <div className={styles.scoresheetContainer}>
         <h1 className={styles.title}>
-          {displayName} -- Scores for {year}
+          {currentUser.displayName} -- Scores for {year}
         </h1>
         {entries.map(entry => (
           <Fragment key={entry.country}>
@@ -32,7 +38,7 @@ class Scoresheet extends Component {
               <Score
                 {...entry}
                 onScoreChange={this.handleScoreChange(entry.country)}
-                score={this.props.scores[entry.country] || defaultScore}
+                score={(scores && scores[entry.country]) || defaultScore}
               />
             </div>
             <hr />
@@ -50,26 +56,18 @@ Scoresheet.propTypes = {
       artist: string,
       songTitle: string,
       country: string,
-      finalRanking: 0,
+      finalRanking: number,
       finalScore: number,
       showOrder: number,
       year: number
     })
   ),
-  scores: arrayOf(
-    shape({
-      song: number,
-      dance: number,
-      cheese: number,
-      bonusPoints: number,
-      bonusText: string
-    })
-  )
+  scores: shape({})
 };
 
 Scoresheet.defaultProps = {
   entries: [],
-  scores: []
+  scores: {}
 };
 
 export default Scoresheet;

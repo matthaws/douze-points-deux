@@ -10,11 +10,19 @@ const mapStateToProps = (state, ownProps) => {
     year,
     entries: getVal(state.firebase.data, `entries/${year}`),
     isLoading: state.firebase.requesting[`entries/${year}`],
-    displayName: state.auth.currentUser.displayName
+    currentUser: state.auth.currentUser,
+    scores: getVal(
+      state.firebase.data,
+      `scores/${state.auth.currentUser.uid}/${year}`
+    )
   };
 };
 
-const mapFireBaseToProps = props => [`entries/${props.match.params.year}`];
+const mapFireBaseToProps = ({ match, firebase }) => {
+  const year = match.params.year;
+  const currentUser = firebase.auth().currentUser;
+  return [`entries/${year}`, `scores/${currentUser.uid}/${year}`];
+};
 
 const enhance = compose(
   firebaseConnect(mapFireBaseToProps),

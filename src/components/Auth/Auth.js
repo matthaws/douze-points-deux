@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { shape, func, object } from "prop-types";
-import { push } from "connected-react-router";
-import { isEmpty } from "react-redux-firebase";
 import classNames from "classnames";
 
 import styles from "./Auth.module.css";

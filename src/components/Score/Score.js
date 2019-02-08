@@ -25,7 +25,7 @@ const Score = ({ score, country, artist, songTitle, onScoreChange }) => (
       </div>
     </div>
     <div className={styles.scores}>
-      {Object.keys(score).map(category => (
+      {Object.keys(prettyNames).map(category => (
         <label
           key={`${country}-${category}`}
           htmlFor={`${country}-${category}`}
@@ -62,11 +62,11 @@ Score.propTypes = {
   country: string,
   onScoreChange: func,
   score: shape({
-    song: number,
-    dance: number,
-    costume: number,
-    cheese: number,
-    bonusPoints: number,
+    song: string,
+    dance: string,
+    costume: string,
+    cheese: string,
+    bonusPoints: string,
     bonusText: string
   }),
   songTitle: string
