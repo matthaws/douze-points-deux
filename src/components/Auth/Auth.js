@@ -7,11 +7,6 @@ import styles from "./Auth.module.css";
 class AuthPage extends Component {
   state = { version: "signin", email: "", password: "" };
 
-  componentDidMount() {
-    const { firebase, loginUser } = this.props;
-    firebase.auth().onAuthStateChanged(user => loginUser(user));
-  }
-
   setPersistence = firebase =>
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
 

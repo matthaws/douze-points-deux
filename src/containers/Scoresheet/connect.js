@@ -9,16 +9,18 @@ const mapStateToProps = (state, ownProps) => {
   return {
     year,
     entries: getVal(state.firebase.data, `entries/${year}`),
-    isLoading: state.firebase.requesting[`entries/${year}`],
-    currentUser: state.auth.currentUser,
-    scores: getVal(
-      state.firebase.data,
-      `scores/${state.auth.currentUser.uid}/${year}`
-    )
+    isLoading:
+      state.firebase.profile.isEmpty ||
+      state.firebase.requesting[`entries/${year}`],
+    displayName: state.firebase.profile.displayName,
+    scores:
+      state.firebase.auth.uid &&
+      getVal(state.firebase.data, `scores/${state.firebase.auth.uid}/${year}`),
+    userUid: state.firebase.auth.uid
   };
 };
 
-const mapFireBaseToProps = ({ match, firebase }) => {
+const mapFireBaseToProps = ({ match, firebase }, ownProps) => {
   const year = match.params.year;
   const currentUser = firebase.auth().currentUser;
   return [`entries/${year}`, `scores/${currentUser.uid}/${year}`];

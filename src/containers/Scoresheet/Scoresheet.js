@@ -14,23 +14,30 @@ const defaultScore = {
 
 class Scoresheet extends Component {
   handleScoreChange = country => category => e => {
-    const { firebase, scores, year, currentUser } = this.props;
+    const { firebase, scores, year, userUid } = this.props;
     const priorScore = (scores && scores[country]) || defaultScore;
     const newScore = { ...priorScore, [category]: e.target.value };
     firebase
       .database()
-      .ref(`scores/${currentUser.uid}/${year}/${country}`)
+      .ref(`scores/${userUid}/${year}/${country}`)
       .set(newScore);
   };
 
   render() {
-    const { entries, year, isLoading, currentUser, scores } = this.props;
+    const {
+      entries,
+      year,
+      isLoading,
+      displayName,
+      userUid,
+      scores
+    } = this.props;
     return isLoading ? (
       <h1>Loading</h1>
     ) : (
       <div className={styles.scoresheetContainer}>
         <h1 className={styles.title}>
-          {currentUser.displayName} -- Scores for {year}
+          {displayName} -- Scores for {year}
         </h1>
         {entries.map(entry => (
           <Fragment key={entry.country}>
