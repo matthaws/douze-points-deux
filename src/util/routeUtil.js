@@ -21,7 +21,9 @@ const Protected = ({ component: Component, path, loggedIn }) => (
 );
 
 const mapStateToProps = state => {
-  return { loggedIn: state.firebase.auth.isLoaded };
+  return {
+    loggedIn: state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty
+  };
 };
 
 export const AuthRoute = connect(

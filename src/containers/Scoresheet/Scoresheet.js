@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { arrayOf, shape, string, number } from "prop-types";
+import { Link } from "react-router-dom";
 
+import Spinner from "components/Spinner";
 import Score from "components/Score";
 import styles from "./Scoresheet.module.css";
 
@@ -24,18 +26,12 @@ class Scoresheet extends Component {
   };
 
   render() {
-    const {
-      entries,
-      year,
-      isLoading,
-      displayName,
-      userUid,
-      scores
-    } = this.props;
+    const { entries, year, isLoading, displayName, scores } = this.props;
     return isLoading ? (
-      <h1>Loading</h1>
+      <Spinner />
     ) : (
       <div className={styles.scoresheetContainer}>
+        <Link to="/test">Test</Link>
         <h1 className={styles.title}>
           {displayName} -- Scores for {year}
         </h1>

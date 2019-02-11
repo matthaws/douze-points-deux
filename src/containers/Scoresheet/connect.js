@@ -23,7 +23,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapFireBaseToProps = ({ match, firebase }, ownProps) => {
   const year = match.params.year;
   const currentUser = firebase.auth().currentUser;
-  return [`entries/${year}`, `scores/${currentUser.uid}/${year}`];
+  return currentUser
+    ? [`entries/${year}`, `scores/${currentUser.uid}/${year}`]
+    : [];
 };
 
 const enhance = compose(

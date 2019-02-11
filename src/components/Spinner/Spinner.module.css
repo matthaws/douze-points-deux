@@ -1,0 +1,277 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*!
+ * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
+ * Copyright 2015 Daniel Cardoso <@DanielCardoso>
+ * Licensed under MIT
+ */
+
+.spinner,
+.spinner > div {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.spinner {
+  display: block;
+  font-size: 0;
+  color: #fff;
+}
+
+.spinner.la-dark {
+  color: #333;
+}
+
+.spinner > div {
+  display: inline-block;
+  float: none;
+  background-color: currentColor;
+  border: 0 solid currentColor;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+}
+
+.spinner > div {
+  width: 8px;
+  height: 8px;
+  margin: 2px;
+  border-radius: 100%;
+  -webkit-animation-name: ball-grid-pulse;
+  -moz-animation-name: ball-grid-pulse;
+  -o-animation-name: ball-grid-pulse;
+  animation-name: ball-grid-pulse;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.spinner > div:nth-child(1) {
+  color: #e6261f;
+  -webkit-animation-duration: 0.65s;
+  -moz-animation-duration: 0.65s;
+  -o-animation-duration: 0.65s;
+  animation-duration: 0.65s;
+  -webkit-animation-delay: 0.03s;
+  -moz-animation-delay: 0.03s;
+  -o-animation-delay: 0.03s;
+  animation-delay: 0.03s;
+}
+
+.spinner > div:nth-child(2) {
+  color: #eb7532;
+  -webkit-animation-duration: 1.02s;
+  -moz-animation-duration: 1.02s;
+  -o-animation-duration: 1.02s;
+  animation-duration: 1.02s;
+  -webkit-animation-delay: 0.09s;
+  -moz-animation-delay: 0.09s;
+  -o-animation-delay: 0.09s;
+  animation-delay: 0.09s;
+}
+
+.spinner > div:nth-child(3) {
+  color: #f7d038;
+  -webkit-animation-duration: 1.06s;
+  -moz-animation-duration: 1.06s;
+  -o-animation-duration: 1.06s;
+  animation-duration: 1.06s;
+  -webkit-animation-delay: -0.69s;
+  -moz-animation-delay: -0.69s;
+  -o-animation-delay: -0.69s;
+  animation-delay: -0.69s;
+}
+
+.spinner > div:nth-child(4) {
+  color: #a3e048;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  -webkit-animation-delay: -0.41s;
+  -moz-animation-delay: -0.41s;
+  -o-animation-delay: -0.41s;
+  animation-delay: -0.41s;
+}
+
+.spinner > div:nth-child(5) {
+  color: #49da9a;
+  -webkit-animation-duration: 1.6s;
+  -moz-animation-duration: 1.6s;
+  -o-animation-duration: 1.6s;
+  animation-duration: 1.6s;
+  -webkit-animation-delay: 0.04s;
+  -moz-animation-delay: 0.04s;
+  -o-animation-delay: 0.04s;
+  animation-delay: 0.04s;
+}
+
+.spinner > div:nth-child(6) {
+  color: #34bbe6;
+  -webkit-animation-duration: 0.84s;
+  -moz-animation-duration: 0.84s;
+  -o-animation-duration: 0.84s;
+  animation-duration: 0.84s;
+  -webkit-animation-delay: 0.07s;
+  -moz-animation-delay: 0.07s;
+  -o-animation-delay: 0.07s;
+  animation-delay: 0.07s;
+}
+
+.spinner > div:nth-child(7) {
+  color: #4355db;
+  -webkit-animation-duration: 0.68s;
+  -moz-animation-duration: 0.68s;
+  -o-animation-duration: 0.68s;
+  animation-duration: 0.68s;
+  -webkit-animation-delay: -0.66s;
+  -moz-animation-delay: -0.66s;
+  -o-animation-delay: -0.66s;
+  animation-delay: -0.66s;
+}
+
+.spinner > div:nth-child(8) {
+  color: #d23be7;
+  -webkit-animation-duration: 0.93s;
+  -moz-animation-duration: 0.93s;
+  -o-animation-duration: 0.93s;
+  animation-duration: 0.93s;
+  -webkit-animation-delay: -0.76s;
+  -moz-animation-delay: -0.76s;
+  -o-animation-delay: -0.76s;
+  animation-delay: -0.76s;
+}
+
+.spinner > div:nth-child(9) {
+  color: pink;
+  -webkit-animation-duration: 1.24s;
+  -moz-animation-duration: 1.24s;
+  -o-animation-duration: 1.24s;
+  animation-duration: 1.24s;
+  -webkit-animation-delay: -0.76s;
+  -moz-animation-delay: -0.76s;
+  -o-animation-delay: -0.76s;
+  animation-delay: -0.76s;
+}
+
+.spinner.sm {
+  width: 18px;
+  height: 18px;
+}
+
+.spinner.sm > div {
+  width: 4px;
+  height: 4px;
+  margin: 1px;
+}
+
+.spinner.md {
+  width: 72px;
+  height: 72px;
+}
+
+.spinner.md > div {
+  width: 16px;
+  height: 16px;
+  margin: 4px;
+}
+
+.spinner.lg {
+  width: 108px;
+  height: 108px;
+}
+
+.spinner.lg > div {
+  width: 24px;
+  height: 24px;
+  margin: 6px;
+}
+
+/*
+ * Animation
+ */
+@-webkit-keyframes ball-grid-pulse {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    -webkit-transform: scale(0.45);
+    transform: scale(0.45);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-moz-keyframes ball-grid-pulse {
+  0% {
+    opacity: 1;
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    -moz-transform: scale(0.45);
+    transform: scale(0.45);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@-o-keyframes ball-grid-pulse {
+  0% {
+    opacity: 1;
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    -o-transform: scale(0.45);
+    transform: scale(0.45);
+  }
+  100% {
+    opacity: 1;
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes ball-grid-pulse {
+  0% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    -webkit-transform: scale(0.45);
+    -moz-transform: scale(0.45);
+    -o-transform: scale(0.45);
+    transform: scale(0.45);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
