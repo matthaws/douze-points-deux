@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import Spinner from "components/Spinner";
 import Score from "components/Score";
+
 import styles from "./Scoresheet.module.css";
 
 const defaultScore = {
@@ -26,27 +27,24 @@ class Scoresheet extends Component {
   };
 
   render() {
-    const { entries, year, isLoading, displayName, scores } = this.props;
+    const { entries, year, isLoading, displayName } = this.props;
     return isLoading ? (
       <Spinner />
     ) : (
       <div className={styles.scoresheetContainer}>
-        <Link to="/test">Test</Link>
         <h1 className={styles.title}>
           {displayName} -- Scores for {year}
         </h1>
-        {entries.map(entry => (
-          <Fragment key={entry.country}>
-            <div className={styles.score}>
-              <Score
-                {...entry}
-                onScoreChange={this.handleScoreChange(entry.country)}
-                score={(scores && scores[entry.country]) || defaultScore}
-              />
-            </div>
-            <hr />
-          </Fragment>
-        ))}
+        <form>
+          {entries.map(entry => (
+            <Fragment key={entry.country}>
+              <div className={styles.score}>
+                <Score {...entry} year={year} />
+              </div>
+              <hr />
+            </Fragment>
+          ))}
+        </form>
       </div>
     );
   }
