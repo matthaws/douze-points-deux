@@ -1,5 +1,4 @@
 import React from "react";
-import { FormSection, Field } from "redux-form";
 import { string, shape } from "prop-types";
 import HeartFlag from "components/HeartFlag";
 import styles from "./Score.module.css";
@@ -13,7 +12,7 @@ const prettyNames = {
   bonusText: ""
 };
 
-const Score = ({ score, country, artist, songTitle, onScoreChange }) => (
+const Score = ({ country, songTitle, artist, onScoreChange, score }) => (
   <div className={styles.scoreContainer}>
     <div className={styles.header}>
       <div className={styles.countrySection}>
@@ -25,38 +24,42 @@ const Score = ({ score, country, artist, songTitle, onScoreChange }) => (
         <h2>{artist}</h2>
       </div>
     </div>
-    <FormSection name={country}>
-      <div className={styles.scores}>
-        {Object.keys(prettyNames).map(category => (
-          <label
-            key={`${country}.${category}`}
-            htmlFor={`${country}.${category}`}
-          >
-            {category === "bonusText" ? (
-              <Field
-                component="textarea"
+    <div className={styles.scores}>
+      {Object.keys(prettyNames).map(category => (
+        <label
+          key={`${country}.${category}`}
+          htmlFor={`${country}.${category}`}
+        >
+          {category === "bonusText" ? (
+            <textarea
+              id={`${country}.${category}`}
+              className={styles.textarea}
+              onChange={onScoreChange(category)}
+              value={score[category]}
+            />
+          ) : (
+            <div className={styles.category}>
+              {prettyNames[category]}
+              <input
                 id={`${country}.${category}`}
-                name={category}
-                props={{ className: styles.textarea }}
+                className={styles.input}
+                max={12}
+                min={0}
+                type="number"
+                onChange={onScoreChange(category)}
+                value={score[category]}
               />
-            ) : (
-              <div className={styles.category}>
-                {prettyNames[category]}
-                <Field
-                  component={"input"}
-                  id={`${country}.${category}`}
-                  name={category}
-                  props={{ className: styles.input, max: 12, min: 0 }}
-                  type="number"
-                />
-              </div>
-            )}
-          </label>
-        ))}
-      </div>
-    </FormSection>
+            </div>
+          )}
+        </label>
+      ))}
+    </div>
   </div>
 );
+
+Score.defaultProps = {
+  score: {}
+};
 
 Score.propTypes = {
   artist: string,

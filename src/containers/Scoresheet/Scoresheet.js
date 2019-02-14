@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { arrayOf, shape, string, number } from "prop-types";
-import { Link } from "react-router-dom";
 
 import Spinner from "components/Spinner";
 import Score from "components/Score";
@@ -16,34 +15,60 @@ const defaultScore = {
 };
 
 class Scoresheet extends Component {
+  state = this.props.scores;
+
   handleScoreChange = country => category => e => {
-    const { firebase, scores, year, userUid } = this.props;
-    const priorScore = (scores && scores[country]) || defaultScore;
-    const newScore = { ...priorScore, [category]: e.target.value };
+    this.setState({
+      ...this.state,
+      [country]: { ...this.state[country], [category]: e.target.value }
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { firebase, year, userUid } = this.props;
+    console.log(firebase.database().ref(`scores/${userUid}/${year}`));
     firebase
       .database()
-      .ref(`scores/${userUid}/${year}/${country}`)
-      .set(newScore);
+      .ref(`scores/${userUid}/${year}`)
+      .set(this.state);
   };
+
+  componentDidUpdate(prevProps) {
+    if (
+      JSON.stringify(prevProps.scores) !== JSON.stringify(this.props.scores)
+    ) {
+      this.setState(this.props.scores);
+    }
+  }
 
   render() {
     const { entries, year, isLoading, displayName } = this.props;
+
     return isLoading ? (
       <Spinner />
     ) : (
-      <div className={styles.scoresheetContainer}>
+      <div className={styles.scoreshetContainer}>
         <h1 className={styles.title}>
           {displayName} -- Scores for {year}
         </h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
+          <button type="submit">Save Scores</button>
           {entries.map(entry => (
             <Fragment key={entry.country}>
               <div className={styles.score}>
-                <Score {...entry} year={year} />
+                <Score
+                  {...entry}
+                  score={this.state[entry.country]}
+                  year={year}
+                  name={entry.country}
+                  onScoreChange={this.handleScoreChange(entry.country)}
+                />
               </div>
               <hr />
             </Fragment>
           ))}
+          <button type="submit">Save Scores</button>
         </form>
       </div>
     );

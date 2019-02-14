@@ -1,1 +1,1 @@
-export const selectCurrentUser = state => state.firebase.auth().currentUser;
+export const selectCurrentUserUid = state => state.firebase.auth.uid;

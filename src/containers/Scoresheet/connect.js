@@ -1,54 +1,35 @@
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { firebaseConnect, getVal } from "react-redux-firebase";
-import { reduxForm } from "redux-form";
 
-import { selectCurrentUser } from "store/auth/selectors";
+import { selectCurrentUserUid } from "store/auth/selectors";
 import { selectScoresheetYear } from "store/router/selectors";
 
 import Scoresheet from "./Scoresheet";
 
-const selectInitialValues = (state, year) => {
-  const initialValues = {};
-  const scores =
-    getVal(state.firebase.data, `scores/${state.firebase.auth.uid}/${year}`) ||
-    {};
-
-  Object.keys(scores).forEach(country =>
-    Object.keys(scores[country]).forEach(
-      category =>
-        (initialValues[`${country}.${category}`] = scores[country][category])
-    )
-  );
-  return initialValues;
-};
-
 const mapStateToProps = (state, ownProps) => {
   const year = selectScoresheetYear(state);
+  const userUid = selectCurrentUserUid(state);
   return {
     year,
     entries: getVal(state.firebase.data, `entries/${year}`),
-    initialValues: selectInitialValues(state, year),
     isLoading:
       state.firebase.profile.isEmpty ||
       state.firebase.requesting[`entries/${year}`],
     displayName: state.firebase.profile.displayName,
-    userUid: state.firebase.auth.uid
+    scores: getVal(state.firebase.data, `scores/${userUid}/${year}`)
   };
 };
 
-const mapFireBaseToProps = (state, ownProps) => {
-  const year = selectScoresheetYear(state);
-  const currentUser = selectCurrentUser(state);
-  return currentUser
-    ? [`entries/${year}`, `scores/${currentUser.uid}/${year}`]
-    : [];
+const mapFireBaseToProps = props => {
+  const { year } = props.match.params;
+  const userUid = props.firebase.auth().currentUser.uid;
+  return userUid ? [`entries/${year}`, `scores/${userUid}/${year}`] : [];
 };
 
 const enhance = compose(
-  connect(mapStateToProps),
-  reduxForm({ form: "scoresheet", enableReinitialize: true }),
-  firebaseConnect(mapFireBaseToProps)
+  firebaseConnect(mapFireBaseToProps),
+  connect(mapStateToProps)
 );
 
 export default enhance(Scoresheet);
